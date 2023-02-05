@@ -84,6 +84,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="g9L-ve-ww8">
                                                 <rect key="frame" x="254.66666666666671" y="0.0" width="127.33333333333334" height="32"/>
+                                                <connections>
+                                                    <action selector="stepperChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="19H-jy-VqM"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -94,11 +97,11 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="182" id="RCF-Eb-FR0"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Calculate">
+                                        <state key="normal" title="CALCULATE">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="fwo-ma-BPf" kind="presentation" id="6ED-U3-xlx"/>
+                                            <action selector="calculatePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Meb-ne-3F1"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -131,17 +134,19 @@
                         <outlet property="peopleAmount" destination="gfo-2y-eaW" id="oP2-2j-BDo"/>
                         <outlet property="tipAmount" destination="7yO-Yu-ck1" id="TVI-tR-rzU"/>
                         <outlet property="tipSlider" destination="vcY-04-Q1A" id="zOg-Gr-Xa7"/>
+                        <outlet property="tipStepper" destination="g9L-ve-ww8" id="6pl-Xk-c71"/>
                         <outlet property="totalBill" destination="tp0-ns-5Uw" id="7OT-es-7hx"/>
+                        <segue destination="fwo-ma-BPf" kind="presentation" identifier="goToResult" id="Q3c-Tc-LNZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="54.418604651162788" y="3.218884120171674"/>
         </scene>
-        <!--View Controller-->
+        <!--Result View Controller-->
         <scene sceneID="oel-uc-iAy">
             <objects>
-                <viewController id="fwo-ma-BPf" sceneMemberID="viewController">
+                <viewController id="fwo-ma-BPf" customClass="ResultViewController" customModule="Tipsy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dex-fh-9Ej">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -167,7 +172,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.28851625320000002" green="0.69200128319999998" blue="0.41999191050000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="sVM-23-Pc8" firstAttribute="centerX" secondItem="U3e-46-q2b" secondAttribute="centerX" id="YXP-4H-Ih9"/>
                                     <constraint firstItem="sVM-23-Pc8" firstAttribute="centerY" secondItem="U3e-46-q2b" secondAttribute="centerY" id="qfr-xL-kBl"/>
@@ -180,9 +185,12 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="182" id="B0c-dz-hBe"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Calculate">
+                                <state key="normal" title="RECALCULATE">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="recalculateButton:" destination="fwo-ma-BPf" eventType="touchUpInside" id="RQW-RL-y7V"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Nuu-yk-ocQ"/>
@@ -196,6 +204,9 @@
                             <constraint firstItem="Nuu-yk-ocQ" firstAttribute="bottom" secondItem="Bu0-3h-niK" secondAttribute="bottom" constant="64" id="FkS-sc-1xn"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="resultWithTip" destination="Q39-ml-aGb" id="dDe-94-24n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cny-Y5-cI9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
