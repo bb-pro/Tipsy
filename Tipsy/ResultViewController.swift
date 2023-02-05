@@ -8,28 +8,23 @@
 import UIKit
 
 class ResultViewController: UIViewController {
+
+//MARK: - Public Properties
     var result: Float = 0
+    
+//MARK: - IB Outlets
     @IBOutlet var resultWithTip: UILabel!
+    
+//MARK: - Override Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         resultWithTip.text = String(format: "%.1f", result)
     
     }
-    
+
+//MARK: - IB Actions
     @IBAction func recalculateButton(_ sender: UIButton) {
         dismiss(animated: true)
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -8,7 +8,12 @@
 import UIKit
 
 class ViewController: UIViewController {
+//MARK: - Private Properties
+    
     private var tipPerPerson: Float = 0
+    
+//MARK: - IB Outlets
+    
     @IBOutlet var totalBill: UITextField!
     
     @IBOutlet var tipAmount: UILabel!
@@ -16,6 +21,8 @@ class ViewController: UIViewController {
     
     @IBOutlet var peopleAmount: UILabel!
     @IBOutlet var tipStepper: UIStepper!
+
+//MARK: - Override Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +31,14 @@ class ViewController: UIViewController {
         peopleAmount.text = String(tipStepper.value)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToResult" {
+            let destinationVC = segue.destination as! ResultViewController
+            destinationVC.result = tipPerPerson
+        }
+    }
+
+//MARK: - IB Actions
     @IBAction func tipSliderChanged(_ sender: UISlider) {
         tipAmount.text = String(format: "%.0f", sender.value) 
     }
@@ -37,11 +52,6 @@ class ViewController: UIViewController {
         tipPerPerson = (bil + (bil * tipSlider.value) / 100) / Float(tipStepper.value)
         performSegue(withIdentifier: "goToResult", sender: self)
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToResult" {
-            let destinationVC = segue.destination as! ResultViewController
-            destinationVC.result = tipPerPerson
-        }
-    }
+    
 }
 
