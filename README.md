@@ -1,2 +1,2 @@
 # Tipsy
-learning project in swift
+learning project in swift.
